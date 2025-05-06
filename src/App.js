@@ -9,6 +9,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getCurrentUser } from './features/auth/authSlice'
+import MultiplayerGame from './components/MultiplayerGame'
+import Matchmaking from './components/Matchmaking'
 
 
 function App()
@@ -35,6 +37,8 @@ function App()
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/multiplayer' element={<Matchmaking />} />
+        <Route path='/multiplayer/:roomId' element={<MultiplayerGame />} />
       </Routes>
       </div>
     </Router>

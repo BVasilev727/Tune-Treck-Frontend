@@ -32,6 +32,9 @@ const Header = () =>
                     <li>
                         <div><Link to='/dashboard' >{user.name}</Link></div>
                     </li>
+                    <li>
+                        <div><Link to='/multiplayer' >Play vs Player</Link></div>
+                    </li>
                     </>
                 ) : (
                 <>

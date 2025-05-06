@@ -6,7 +6,10 @@ const register = async (userData) =>
     const response = await axios.post(API_URL,userData, {
         withCredentials: true
     })
-    return response.data
+    return {
+        user: response.data.user,
+        token: response.data.token
+    }
 }
 
 const logout = async() =>
@@ -27,7 +30,10 @@ const login = async(userData) =>
             withCredentials: true
         }
     )
-    return response.data
+    return {
+        user: response.data.user,
+        token: response.data.token
+    }
 }
 
 const uploadProfilePicture = async (imageFile, token) =>
