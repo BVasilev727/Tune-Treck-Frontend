@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux"
-import React,{ useEffect, useState, useRef } from "react"
+import {  useSelector } from "react-redux"
+import React from "react"
 import { useGameLogic } from "../hooks/useGameLogic"
 import { useSuggestions } from "../hooks/useSuggestions";
 

@@ -7,34 +7,12 @@ const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 export function useMatchmakingLogic(){
     const user = useSelector(state => state.auth)
     const socketRef = useRef(null)
-    const token = useSelector(s => s.auth.token)
 
     const [queueTime, setQueueTime] = useState(0)
     const [matched, setMatched] = useState(false)
     const [roomId, setRoomId] = useState(null)
     const [opponent, setOpponent] = useState(null)
     const [queueStart, setQueueStart] = useState(null)
-
-    /*useEffect(() =>
-    {
-        socketRef.current = io(SOCKET_URL, {
-            withCredentials: true
-        })
-        console.log(`${socketRef.current.id} connected: ${socketRef.current.connected}`)
-        socketRef.current.on('matched', ({roomId, players}) =>
-        {
-            setMatched(true)
-            setRoomId(roomId)
-            setOpponent(players.find(n => n !== user.name))
-        })
-
-        return () =>
-        {
-            socketRef.current.disconnect()
-        }
-    },[user.name])
-    */
-
 
     useEffect(() => {
         console.log('🔌 Initializing Socket.IO client…')

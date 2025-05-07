@@ -1,7 +1,6 @@
 import { useSelector,useDispatch } from "react-redux"
 import { getCurrentUser, uploadProfilePicture } from "../features/auth/authSlice"
 import { useState } from "react"
-import authService from "../features/auth/authService"
 
 const Dashboard = () =>
 {

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const API_URL = process.env.REACT_APP_API_URL + '/song'
 
-const getTodaysSong = async () =>
+export const getTodaysSong = async () =>
 {
     try{
         const res = await axios.get(`${API_URL}/get`)
@@ -44,4 +44,3 @@ export const getSuggestions = async(query) =>
         return []
     }
 }
-export default {getTodaysSong}
