@@ -16,8 +16,9 @@ export function useMatchmakingLogic(){
 
     useEffect(() => {
         console.log('🔌 Initializing Socket.IO client…')
-        const socket = io(SOCKET_URL, {
-          withCredentials: true
+        const socket = io(window.location.origin, {
+          withCredentials: true,
+          path: '/socket.io'
         })
         socketRef.current = socket
     
