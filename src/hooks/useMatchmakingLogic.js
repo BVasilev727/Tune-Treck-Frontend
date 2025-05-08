@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import { io } from "socket.io-client"
 import { useSelector } from "react-redux"
 
-const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || window.location.origin
 
 export function useMatchmakingLogic(){
     const user = useSelector(state => state.auth)
