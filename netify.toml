@@ -3,10 +3,3 @@
     to= "https://tune-treck-b9ab7e65aebb.herokuapp.com/api/:splat"
     status= 200
     force = true
-
-[[redirects]]
-  from = "/socket.io/*"
-  to   = "https://tune-treck-b9ab7e65aebb.herokuapp.com/socket.io/:splat"
-  status = 200
-  force = true
-  ws = true
