@@ -19,7 +19,8 @@ export function useMultiplayerGameLogic(playerName)
 
     useEffect(() =>
     {
-        const socket = io(SOCKET_URL, {
+        const socket = io({
+            path: '/socket.io',
             withCredentials: true
         })
         socketRef.current = socket
