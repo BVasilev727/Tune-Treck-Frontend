@@ -1,0 +1,5 @@
+[[redirects]]
+    from = "/api*"
+    to= "https://tune-treck-b9ab7e65aebb.herokuapp.com/api:splat"
+    status= 200
+    force = true
