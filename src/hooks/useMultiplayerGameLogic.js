@@ -21,7 +21,6 @@ export function useMultiplayerGameLogic(playerName)
     {
         const socket = io(process.env.REACT_APP_SOCKET_URL,{
             auth: {token},
-            path: '/socket.io',
             withCredentials: true
         })
         socketRef.current = socket
