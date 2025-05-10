@@ -31,10 +31,7 @@ const login = async(userData) =>
             withCredentials: true
         }
     )
-    return {
-        user: response.data.user,
-        token: response.data.token
-    }
+    return response.data
 }
 
 const uploadProfilePicture = async (imageFile, token) =>
