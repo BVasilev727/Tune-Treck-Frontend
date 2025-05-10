@@ -20,7 +20,7 @@ export function useMultiplayerGameLogic(playerName)
     useEffect(() =>
     {
         const socket = io(process.env.REACT_APP_SOCKET_URL,{
-            transports: ['websocket','polling'],
+            auth: {token},
             path: '/socket.io',
             withCredentials: true
         })
