@@ -3,7 +3,7 @@ import {io} from 'socket.io-client'
 import { useParams, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || window.location.origin
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 
 export function useMultiplayerGameLogic(playerName)
 {
@@ -25,7 +25,7 @@ export function useMultiplayerGameLogic(playerName)
           console.log('waiting for token')
           return;
         }
-        const socket = io(process.env.REACT_APP_SOCKET_URL,{
+        const socket = io(SOCKET_URL,{
             auth: {token},
             withCredentials: true,
             path: 'socket.io'
