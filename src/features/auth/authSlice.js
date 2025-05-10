@@ -170,6 +170,7 @@ export const authSlice = createSlice(
                 .addCase(getCurrentUser.fulfilled, (state, action) => {
                     state.isLoading = false
                     state.user = action.payload
+                    state.token = action.payload.token
                     state.checkedAuth = true
                 })
                 .addCase(getCurrentUser.rejected, (state, action) => {
