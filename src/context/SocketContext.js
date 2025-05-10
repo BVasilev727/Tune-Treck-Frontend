@@ -33,9 +33,9 @@ export const SocketProvider = () =>
     }, [token])
 
     return (
-        <SocketContext.SocketProvider value={socketRef.current}>
+        <SocketContext.Provider value={socketRef.current}>
            <Outlet />
-        </SocketContext.SocketProvider>
+        </SocketContext.Provider>
     )
 }
 
