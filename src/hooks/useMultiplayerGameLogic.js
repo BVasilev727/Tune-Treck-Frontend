@@ -39,7 +39,7 @@ export function useMultiplayerGameLogic(playerName)
 
         socket.on('new_song', (song) =>
         {
-            console.log(song)
+            console.log('song:',song)
             setSong(song)
             setGuessResult(null)
         })
