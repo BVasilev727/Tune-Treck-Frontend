@@ -16,7 +16,14 @@ export function useMatchmakingLogic(){
     const [queueStart, setQueueStart] = useState(null)
 
     useEffect(() => {
+      
         console.log('🔌 Initializing Socket.IO client…')
+      
+        if(!token)
+        {
+          return <div>Loading...</div>
+        }
+
         const socket = io(SOCKET_URL,{
           auth: {token},
           withCredentials: true,

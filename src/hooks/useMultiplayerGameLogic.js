@@ -17,8 +17,13 @@ export function useMultiplayerGameLogic(playerName)
     const [guessRegult, setGuessResult] = useState(null)
     const [gameOverData, setGameOverData] = useState(null)
 
+    
     useEffect(() =>
     {
+        if(!token)
+        {
+            return <div>Loading...</div>
+        }
         const socket = io(process.env.REACT_APP_SOCKET_URL,{
             auth: {token},
             withCredentials: true
