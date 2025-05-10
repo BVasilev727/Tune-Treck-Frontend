@@ -45,3 +45,6 @@ export const getSuggestions = async(query) =>
         return []
     }
 }
+
+const songService = {getSuggestions, getTodaysSong}
+export default songService
