@@ -29,7 +29,7 @@ export function useMatchmakingLogic(){
           auth: {token},
           withCredentials: true,
           transports: ['polling','websocket'],
-          path: '/'
+          path: 'socket.io'
         })
         socketRef.current = socket
     
