@@ -178,6 +178,7 @@ export const authSlice = createSlice(
                     state.user = null
                     state.isError = true
                     state.message = action.payload
+                    state.token = null
                     state.checkedAuth = true
                 })
        }
