@@ -7,14 +7,14 @@ const SocketContext = createContext(null)
 
 export const SocketProvider = () =>
 {
+    const {checkedAuth} = useSelector(state => state.auth)
     const token = useSelector(state => state.auth.user.token)
     const socketRef = useRef(null)
 
     useEffect(()=>
     {
-        if(!token) return
-        if(socketRef.current) return
-
+        if(!checkedAuth || socketRef.current) return
+        
         const socket = io(process.env.REACT_APP_SOCKET_URL,
             {
                 path: '/socket.io',
