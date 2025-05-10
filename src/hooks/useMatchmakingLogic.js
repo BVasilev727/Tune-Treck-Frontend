@@ -28,7 +28,8 @@ export function useMatchmakingLogic(){
         const socket = io(SOCKET_URL,{
           auth: {token},
           withCredentials: true,
-          transports: ['polling','websocket']
+          transports: ['polling','websocket'],
+          path: '/'
         })
         socketRef.current = socket
     
