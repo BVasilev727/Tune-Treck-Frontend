@@ -25,6 +25,7 @@ export function useMultiplayerGameLogic(playerName)
           console.log('waiting for token')
           return;
         }
+        if(socketRef.current) return
         const socket = io(SOCKET_URL,{
             auth: {token},
             withCredentials: true,
