@@ -1,7 +1,7 @@
-import {useEffect, useState, useRef} from 'react'
-import {io} from 'socket.io-client'
+import {useEffect, useState} from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useSocket } from '../context/SocketContext'
 
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 
@@ -11,7 +11,7 @@ export function useMultiplayerGameLogic(playerName)
     const {roomId} = useParams()
     const location = useLocation()
     const opponent = location.state?.opponent || 'opponent'
-    const socketRef = useRef(null)
+    const socket = useSocket()
 
     const [song, setSong] = useState(null)
     const [guessRegult, setGuessResult] = useState(null)
@@ -19,20 +19,7 @@ export function useMultiplayerGameLogic(playerName)
 
     
     useEffect(() =>
-    {
-        if(!token)
-        {
-          console.log('waiting for token')
-          return
-        }
-        if(socketRef.current) return
-        const socket = io(SOCKET_URL,{
-            auth: {token},
-            withCredentials: true,
-            path: 'socket.io'
-        })
-        socketRef.current = socket
-    
+    {    
         socket.on('new_song', (song) =>
         {
             console.log('song:',song)
@@ -50,22 +37,17 @@ export function useMultiplayerGameLogic(playerName)
             setGameOverData(data)
             setSong(null)
         })
-
-        return () =>
-        {
-            socketRef.current.disconnect()
-        }
-    }, [roomId, token])
+    }, [socket, roomId])
 
     const makeGuess = guess =>
     {
-        socketRef.current.emit('guess', {roomId, guess})
+        socket.emit('guess', {roomId, guess})
     }
 
     const playAgain = () =>
     {
         setGameOverData(null)
-        socketRef.current.emit('find_match', {name: ''})
+        socket.emit('find_match', {name: ''})
     }
 
     return {opponent, song, guessRegult, gameOverData, makeGuess, playAgain}

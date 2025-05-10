@@ -1,13 +1,12 @@
-import { useEffect, useState, useRef } from "react"
-import { io } from "socket.io-client"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { useSocket } from "../context/SocketContext"
 
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 
 export function useMatchmakingLogic(){
     const user = useSelector(state => state.auth.user)
-    const socketRef = useRef(null)
-    const token = useSelector(state => state.auth.user.token)
+    const socketRef = useSocket()
 
     const [queueTime, setQueueTime] = useState(0)
     const [matched, setMatched] = useState(false)
@@ -24,14 +23,7 @@ export function useMatchmakingLogic(){
           console.log('waiting for token')
           return
         }
-        const socket = io(SOCKET_URL,{
-          auth: {token},
-          withCredentials: true,
-          transports: ['polling','websocket'],
-          path: '/socket.io'
-        })
-        socketRef.current = socket
-    
+        
         socket.on('connect', () => {
           console.log('✅ Socket connected, id =', socket.id)
         })
