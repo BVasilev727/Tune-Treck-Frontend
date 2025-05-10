@@ -3,7 +3,6 @@ import authService from "./authService";
 
 const initialState ={
     user: null,
-    token: null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -118,19 +117,18 @@ export const authSlice = createSlice(
                     state.isLoading = false
                     state.isSuccess = true
                     state.user = action.payload
-                    state.token = action.payload.token
                 })
                 .addCase(register.rejected, (state, action) =>
                 {
                     state.isLoading = false
                     state.isError = true
                     state.message = action.payload
+                    
                     state.user = null
                 })
                 .addCase(logout.fulfilled, (state) =>
                 {
                     state.user = null
-                    state.token = null
                 })
                 .addCase(login.pending, (state) =>
                 {
@@ -141,7 +139,6 @@ export const authSlice = createSlice(
                     state.isLoading = false
                     state.isSuccess = true
                     state.user = action.payload
-                    state.token = action.payload.token
                 })
                 .addCase(login.rejected, (state, action) =>
                 {
@@ -169,8 +166,8 @@ export const authSlice = createSlice(
                 })
                 .addCase(getCurrentUser.fulfilled, (state, action) => {
                     state.isLoading = false
+                    state.isSuccess = true
                     state.user = action.payload
-                    state.token = action.payload.token
                     state.checkedAuth = true
                 })
                 .addCase(getCurrentUser.rejected, (state, action) => {
@@ -178,7 +175,6 @@ export const authSlice = createSlice(
                     state.user = null
                     state.isError = true
                     state.message = action.payload
-                    state.token = null
                     state.checkedAuth = true
                 })
        }
