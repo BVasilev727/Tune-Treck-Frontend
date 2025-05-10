@@ -7,7 +7,7 @@ const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || window.location.origin
 
 export function useMultiplayerGameLogic(playerName)
 {
-    const token = useSelector(s => s.auth.token)
+    const token = useSelector(s => s.auth.user.token)
     const {roomId} = useParams()
     const location = useLocation()
     const opponent = location.state?.opponent || 'opponent'

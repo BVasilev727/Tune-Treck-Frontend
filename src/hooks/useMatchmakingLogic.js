@@ -5,9 +5,9 @@ import { useSelector } from "react-redux"
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || window.location.origin
 
 export function useMatchmakingLogic(){
-    const user = useSelector(state => state.auth)
+    const user = useSelector(state => state.auth.user)
     const socketRef = useRef(null)
-    const token = useSelector(state => state.auth.token)
+    const token = useSelector(state => state.auth.user.token)
 
     const [queueTime, setQueueTime] = useState(0)
     const [matched, setMatched] = useState(false)
@@ -20,7 +20,8 @@ export function useMatchmakingLogic(){
         const socket = io(SOCKET_URL,{
           auth: {token},
           withCredentials: true,
-          path: '/socket.io'
+          path: '/socket.io',
+          transports: ['websocket']
         })
         socketRef.current = socket
     
