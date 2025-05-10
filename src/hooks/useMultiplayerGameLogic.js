@@ -1,7 +1,8 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useSocket } from '../context/SocketContext'
+import { useNavigate } from 'react-router-dom'
+import { io } from 'socket.io-client'
 
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 
@@ -10,8 +11,9 @@ export function useMultiplayerGameLogic(playerName)
     const token = useSelector(s => s.auth.user.token)
     const {roomId} = useParams()
     const location = useLocation()
+    const navigate = useNavigate()
     const opponent = location.state?.opponent || 'opponent'
-    const socket = useSocket()
+    const socketRef = useRef(null)
 
     const [song, setSong] = useState(null)
     const [guessRegult, setGuessResult] = useState(null)
@@ -19,12 +21,25 @@ export function useMultiplayerGameLogic(playerName)
 
     
     useEffect(() =>
-    {    
+    {   
+        if(!roomId) return
+    const socket = io(SOCKET_URL, {
+      path: '/socket.io',
+      withCredentials: true,
+      transports: ['polling','websocket']
+    })
+        socketRef.current = socket
+
+        socket.on('connect', () =>
+        {
+            socket.emit('join_room', {roomId})
+        })
+
         socket.on('new_song', (song) =>
         {
-            console.log('song:',song)
             setSong(song)
             setGuessResult(null)
+            setGameOverData(null)
         })
 
         socket.on('guess_result', ({correct}) =>
@@ -37,18 +52,23 @@ export function useMultiplayerGameLogic(playerName)
             setGameOverData(data)
             setSong(null)
         })
-    }, [socket, roomId])
+        
+        return () =>
+        {
+            socket.disconnect()
+        }
+    }, [socketRef, roomId])
 
     const makeGuess = guess =>
     {
-        socket.emit('guess', {roomId, guess})
+        socketRef.current.emit('guess', {roomId, guess})
     }
 
     const playAgain = () =>
     {
-        setGameOverData(null)
-        socket.emit('find_match', {name: ''})
+        navigate('/multiplayer')
     }
+
 
     return {opponent, song, guessRegult, gameOverData, makeGuess, playAgain}
 }

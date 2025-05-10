@@ -11,7 +11,6 @@ import { useEffect } from 'react'
 import { getCurrentUser } from './features/auth/authSlice'
 import MultiplayerGame from './components/MultiplayerGame'
 import Matchmaking from './components/Matchmaking'
-import { SocketProvider } from './context/SocketContext'
 
 
 function App()
@@ -38,10 +37,8 @@ function App()
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route element={<SocketProvider />}>
           <Route path='/multiplayer' element={<Matchmaking />} />
-          <Route path='/multiplayer/:roomId' element={<MultiplayerGame />} /> 
-        </Route> 
+          <Route path='/multiplayer/:roomId' element={<MultiplayerGame />} />  
       </Routes>
       </div>
     </Router>
