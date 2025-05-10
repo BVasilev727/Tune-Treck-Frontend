@@ -44,11 +44,6 @@ export function useMatchmakingLogic(){
           setRoomId(roomId)
           setOpponent(players.find((n) => n !== user.name))
         })
-    
-        return () => {
-          console.log('🛑 Disconnecting socket…')
-          socket.disconnect()
-        }
       }, [user.name, token])
 
     useEffect(() =>

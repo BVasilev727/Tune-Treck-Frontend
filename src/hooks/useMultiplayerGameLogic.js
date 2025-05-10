@@ -33,11 +33,6 @@ export function useMultiplayerGameLogic(playerName)
         })
         socketRef.current = socket
     
-        socket.on('connect', () =>
-        {
-            socket.emit('start_game', {roomId})
-        })
-
         socket.on('new_song', (song) =>
         {
             console.log('song:',song)
