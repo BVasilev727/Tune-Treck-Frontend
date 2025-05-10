@@ -1,10 +1,11 @@
 import React, {createContext, useContext, useEffect, useRef} from "react";
 import { io } from "socket.io-client"
 import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 
 const SocketContext = createContext(null)
 
-export const SocketProvider = ({children}) =>
+export const SocketProvider = () =>
 {
     const token = useSelector(state => state.auth.user.token)
     const socketRef = useRef(null)
@@ -33,7 +34,7 @@ export const SocketProvider = ({children}) =>
 
     return (
         <SocketContext.SocketProvider value={socketRef.current}>
-            {children}
+           <Outlet />
         </SocketContext.SocketProvider>
     )
 }

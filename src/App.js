@@ -42,7 +42,7 @@ function App()
           <Route path='/multiplayer' element={<Matchmaking />} />
           <Route path='/multiplayer/:roomId' element={<MultiplayerGame />} /> 
         </Route> 
-       </Routes>
+      </Routes>
       </div>
     </Router>
     <ToastContainer />
