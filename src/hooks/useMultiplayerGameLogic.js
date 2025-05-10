@@ -23,7 +23,7 @@ export function useMultiplayerGameLogic(playerName)
         if(!token)
         {
           console.log('waiting for token')
-          return;
+          return
         }
         if(socketRef.current) return
         const socket = io(SOCKET_URL,{
