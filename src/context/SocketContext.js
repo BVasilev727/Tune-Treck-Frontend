@@ -32,6 +32,11 @@ export const SocketProvider = () =>
         }
     }, [token])
 
+    if(!socketRef.current)
+    {
+        return null
+    }
+
     return (
         <SocketContext.Provider value={socketRef.current}>
            <Outlet />
