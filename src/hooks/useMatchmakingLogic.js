@@ -42,7 +42,7 @@ export function useMatchmakingLogic(){
           console.log('🛑 Disconnecting socket…')
           socket.disconnect()
         }
-      }, [user.name])
+      }, [user.name, token])
       
     useEffect(() =>
     {
