@@ -21,7 +21,8 @@ export function useMatchmakingLogic(){
       
         if(!token)
         {
-          return <div>Loading...</div>
+          console.log('waiting for token')
+          return;
         }
 
         const socket = io(SOCKET_URL,{

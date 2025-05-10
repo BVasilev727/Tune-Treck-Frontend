@@ -22,7 +22,8 @@ export function useMultiplayerGameLogic(playerName)
     {
         if(!token)
         {
-            return <div>Loading...</div>
+          console.log('waiting for token')
+          return;
         }
         const socket = io(process.env.REACT_APP_SOCKET_URL,{
             auth: {token},
