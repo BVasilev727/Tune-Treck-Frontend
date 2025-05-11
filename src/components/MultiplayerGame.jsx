@@ -29,7 +29,7 @@ const MultiplayerGame = () =>
   if (!song) {
     return (
       <div style={{ textAlign: 'center', marginTop: 50 }}>
-        <h2>Matched vs {opponent}</h2>
+        <h2>Matched vs {opponent.name}</h2>
         <p>Loading round…</p>
       </div>
     )
