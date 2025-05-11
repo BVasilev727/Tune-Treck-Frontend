@@ -34,7 +34,7 @@ export function useMultiplayerGameLogic(playerName)
         })
         socketRef.current = socket
         
-        socket.on('connect', () =>
+        socket.on('connection', () =>
         {
             socket.emit('join_room', {roomId})
             console.log("connected to room", roomId)
