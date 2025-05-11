@@ -34,13 +34,13 @@ export function useMultiplayerGameLogic(playerName)
         })
         socketRef.current = socket
         
-        socket.on('connection', () =>
+        socket.on('connect', () =>
         {
             socket.emit('join_room', {roomId})
             console.log("connected to room", roomId)
             socket.emit('start_game', {roomId})
         })
-
+        socket.onAny((evn, ...args) => console.debug('socket.onAny:', evn, args))
         socket.on('new_song', song =>
         {
             console.log('song:',song)
@@ -64,7 +64,7 @@ export function useMultiplayerGameLogic(playerName)
         {
             socketRef.current.disconnect()
         }
-    }, [roomId, token])
+    }, [roomId, token, socketRef])
 
     const makeGuess = guess =>
     {
