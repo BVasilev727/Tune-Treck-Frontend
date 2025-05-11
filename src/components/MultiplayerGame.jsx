@@ -15,6 +15,7 @@ const MultiplayerGame = () =>
 
   if(gameOverData)
   {
+    console.log("someone won wow")
     return (
       <div style={{ textAlign: 'center', marginTop: 50 }}>
       <h2>🏆 {gameOverData.winner.name} wins!</h2>
