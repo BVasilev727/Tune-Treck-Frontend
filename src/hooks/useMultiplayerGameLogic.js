@@ -36,9 +36,9 @@ export function useMultiplayerGameLogic()
         
         socket.on('connect', () =>
         {
-            socket.emit('join_room', {roomId})
+            socket.emit('join_room', roomId)
             console.log("connected to room", roomId)
-            socket.emit('start_game', {roomId})
+            socket.emit('start_game', roomId)
         })
         socket.onAny((evn, ...args) => console.debug('socket.onAny:', evn, args))
         socket.on('new_song', song =>
