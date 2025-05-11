@@ -20,14 +20,10 @@ export function useMultiplayerGameLogic(playerName)
     
     useEffect(() =>
     {
-        if(!roomId) 
+        if(!roomId || !token) 
         {
-            console.log('room id not recieved')
-        }
-        if(!token)
-        {
-          console.log('waiting for token')
-          return
+            console.log('no room id or no token recieved')
+            return
         }
         if(socketRef.current) return
 
@@ -42,6 +38,7 @@ export function useMultiplayerGameLogic(playerName)
         {
             socket.emit('join_room', {roomId})
             console.log("connected to room", roomId)
+            socket.emit('start_game', {roomId})
         })
 
         socket.on('new_song', song =>
