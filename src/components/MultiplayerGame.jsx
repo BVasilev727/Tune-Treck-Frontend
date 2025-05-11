@@ -4,7 +4,7 @@ import {useMultiplayerGameLogic} from '../hooks/useMultiplayerGameLogic'
 const MultiplayerGame = () =>
 {
   const {opponent, song, guessResult, gameOverData, makeGuess, playAgain} = useMultiplayerGameLogic()
-  console.log(song)
+
   const [guess, setGuess] = useState('')
   const audioRef = useRef(null)
     
