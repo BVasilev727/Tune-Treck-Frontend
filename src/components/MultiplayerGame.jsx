@@ -45,9 +45,11 @@ const MultiplayerGame = () =>
           onChange={e => setGuess(e.target.value)}
           placeholder="Your guess..."
         />
-        <button onClick={() => makeGuess(guess)}>Submit Guess</button>
+        <button onClick={() => makeGuess(guess)} disabled={guessResult === true}>Submit Guess</button>
       </div>
       {guessResult === false && <p>❌ Wrong—try again!</p>}
+      {guessResult === true && <p>good job you won</p>}
+      
     </div>
   )
 
