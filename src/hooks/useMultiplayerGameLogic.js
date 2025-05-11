@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux'
 
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 
-export function useMultiplayerGameLogic(playerName)
+export function useMultiplayerGameLogic()
 {
+    console.log('use multiplayer logic fired with:',{roomId})
     const token = useSelector(s => s.auth.user.token)
     const {roomId} = useParams()
     const location = useLocation()
@@ -14,7 +15,7 @@ export function useMultiplayerGameLogic(playerName)
     const socketRef = useRef(null)
 
     const [song, setSong] = useState(null)
-    const [guessRegult, setGuessResult] = useState(null)
+    const [guessResult, setGuessResult] = useState(null)
     const [gameOverData, setGameOverData] = useState(null)
 
     
@@ -77,5 +78,5 @@ export function useMultiplayerGameLogic(playerName)
         socketRef.current.emit('find_match', {name: ''})
     }
 
-    return {opponent, song, guessRegult, gameOverData, makeGuess, playAgain}
+    return {opponent, song, guessResult, gameOverData, makeGuess, playAgain}
 }
