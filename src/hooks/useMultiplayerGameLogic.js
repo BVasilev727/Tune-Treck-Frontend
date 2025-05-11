@@ -30,7 +30,7 @@ export function useMultiplayerGameLogic(playerName)
           return
         }
         if(socketRef.current) return
-        
+
         const socket = io(SOCKET_URL,{
             auth: {token},
             withCredentials: true,
@@ -43,7 +43,7 @@ export function useMultiplayerGameLogic(playerName)
             socket.emit('join_room', {roomId})
         })
 
-        socket.on('new_song', (song) =>
+        socket.on('new_song', song =>
         {
             console.log('song:',song)
             setSong(song)
