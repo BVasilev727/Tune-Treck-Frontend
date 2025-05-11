@@ -20,6 +20,7 @@ export function useMultiplayerGameLogic(playerName)
     
     useEffect(() =>
     {
+        if(!roomId) return
         if(!token)
         {
           console.log('waiting for token')
@@ -32,12 +33,18 @@ export function useMultiplayerGameLogic(playerName)
             path: 'socket.io'
         })
         socketRef.current = socket
-    
+        
+        socket.on('connect', () =>
+        {
+            socket.emit('join_room', {roomId})
+        })
+
         socket.on('new_song', (song) =>
         {
             console.log('song:',song)
             setSong(song)
             setGuessResult(null)
+            setGameOverData(null)
         })
 
         socket.on('guess_result', ({correct}) =>

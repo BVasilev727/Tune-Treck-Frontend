@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 import { io } from "socket.io-client"
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 
@@ -8,6 +9,7 @@ export function useMatchmakingLogic(){
     const user = useSelector(state => state.auth.user)
     const socketRef = useRef(null)
     const token = useSelector(state => state.auth.user.token)
+    const navigate = useNavigate()
 
     const [queueTime, setQueueTime] = useState(0)
     const [matched, setMatched] = useState(false)
@@ -18,7 +20,7 @@ export function useMatchmakingLogic(){
     useEffect(() => {
       
         console.log('🔌 Initializing Socket.IO client…')
-      
+        if(!user?.name) navigate('/')
         if(!token)
         {
           console.log('waiting for token')
@@ -43,15 +45,19 @@ export function useMatchmakingLogic(){
           setMatched(true)
           setRoomId(roomId)
           setOpponent(players.find((n) => n !== user.name))
+          navigate(`/multiplayer/${roomId}`,
+            {
+              state:{opponent:players.find(n=> n!== user.name)}
+            }
+          )
         })
-      }, [user.name, token])
 
-    useEffect(() =>
-    {
-      return () => {
-        socketRef.current?.disconnect();
-      }
-    }, [])
+        return () =>
+        {
+          socket.disconnect()
+        }
+      }, [user, token, navigate])
+
     useEffect(() =>
     {
         let timer
