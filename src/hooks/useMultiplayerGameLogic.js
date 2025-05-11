@@ -7,7 +7,6 @@ const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 
 export function useMultiplayerGameLogic()
 {
-    console.log('use multiplayer logic fired with:',{roomId})
     const token = useSelector(s => s.auth.user.token)
     const {roomId} = useParams()
     const location = useLocation()
