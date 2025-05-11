@@ -63,7 +63,7 @@ export function useMultiplayerGameLogic()
         {
             socketRef.current.disconnect()
         }
-    }, [roomId, token])
+    }, [roomId, token,song])
 
     const makeGuess = guess =>
     {

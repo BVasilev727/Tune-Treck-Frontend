@@ -49,7 +49,6 @@ const MultiplayerGame = () =>
         <button onClick={() => makeGuess(guess)} disabled={guessResult === true}>Submit Guess</button>
       </div>
       {guessResult === false && <p>❌ Wrong—try again!</p>}
-      {guessResult === true && <p>good job you won</p>}
       
     </div>
   )
