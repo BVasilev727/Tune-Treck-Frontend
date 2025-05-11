@@ -20,13 +20,17 @@ export function useMultiplayerGameLogic(playerName)
     
     useEffect(() =>
     {
-        if(!roomId) return
+        if(!roomId) 
+        {
+            console.log('room id not recieved')
+        }
         if(!token)
         {
           console.log('waiting for token')
           return
         }
         if(socketRef.current) return
+        
         const socket = io(SOCKET_URL,{
             auth: {token},
             withCredentials: true,
