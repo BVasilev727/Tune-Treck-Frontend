@@ -10,7 +10,7 @@ export function useLeaderboard(limit = 10)
     useEffect(() =>
     {
         setLoading(true)
-        axios.get(`${process.env.REACT_APP_API_URL}/leaderboard?limit=${limit}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/users/leaderboard?limit=${limit}`)
             .then(res => setPlayers(res.data))
             .catch(err => setError(err))
             .finally(() => setLoading(false))

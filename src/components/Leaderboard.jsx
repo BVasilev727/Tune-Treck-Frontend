@@ -12,8 +12,11 @@ export default function Leaderboard({ limit = 10 }) {
       <h2>Top {limit} Players</h2>
       <ol>
         {players.map((p, i) => (
-          <li key={p.username}>
-            <strong>{p.username}</strong> — {p.elo} Elo
+          <li key={p.name}>
+            <img src={p.profilePicture}
+            alt={p.name}
+            style={{width:32, height: 32, borderRadius: '50%', marginRight: 8 }}/>
+            <strong>{p.name}</strong> — {p.elo} Elo
           </li>
         ))}
       </ol>
