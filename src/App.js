@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import { getCurrentUser } from './features/auth/authSlice'
 import MultiplayerGame from './components/MultiplayerGame'
 import Matchmaking from './components/Matchmaking'
+import Leaderboard from './components/Leaderboard'
 
 
 function App()
@@ -34,6 +35,7 @@ function App()
       <Header />
       <Routes>
         <Route path='/' element={<GameComponent />} />
+        <Route path='/leaderboard' element={<Leaderboard />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/dashboard' element={<Dashboard />} />

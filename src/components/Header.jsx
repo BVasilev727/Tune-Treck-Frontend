@@ -22,6 +22,9 @@ const Header = () =>
                 <Link to='/'>Main game</Link>
             </div>
             <ul>
+                <li>
+                    <div><Link to='/leaderboard'>Leaderboard</Link></div>
+                </li>
                 {user ? (
                     <>
                      <li>
