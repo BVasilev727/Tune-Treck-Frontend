@@ -7,6 +7,7 @@ const SOCKET_URL = process.env.REACT_APP_SOCKET_URL
 
 export function useMultiplayerGameLogic()
 {
+    const user = useSelector(s => s.auth.user)
     const token = useSelector(s => s.auth.user.token)
     const {roomId} = useParams()
     const location = useLocation()
@@ -36,7 +37,7 @@ export function useMultiplayerGameLogic()
         
         socket.on('connect', () =>
         {
-            socket.emit('join_room', roomId)
+            socket.emit('join_room', roomId, user.name)
             console.log("connected to room", roomId)
             socket.emit('start_game', roomId)
         })
