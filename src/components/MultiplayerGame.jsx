@@ -1,10 +1,11 @@
 import React, {useState, useRef, useEffect} from "react"
 import {useMultiplayerGameLogic} from '../hooks/useMultiplayerGameLogic'
+import { useNavigate } from "react-router-dom"
 
 const MultiplayerGame = () =>
 {
-  const {opponent, song, guessResult, gameOverData, makeGuess, playAgain} = useMultiplayerGameLogic()
-
+  const {opponent, song, guessResult, gameOverData, makeGuess} = useMultiplayerGameLogic()
+  const navigate = useNavigate()
   const [guess, setGuess] = useState('')
   const audioRef = useRef(null)
     
@@ -12,6 +13,11 @@ const MultiplayerGame = () =>
   {
       if(song && audioRef.current) audioRef.current.load()
   }, [song])
+
+  const handlePlayAgain = () =>
+  {
+    navigate('/multiplayer')
+  }
 
   if(gameOverData)
   {
@@ -23,7 +29,7 @@ const MultiplayerGame = () =>
         New Elo — {gameOverData.winner.name}: {gameOverData.winner.newElo} |{' '}
         {gameOverData.loser.name}: {gameOverData.loser.newElo}
       </p>
-      <button onClick={playAgain}>Play Again</button>
+      <button onClick={handlePlayAgain}>Play Again?</button>
     </div>
     )
   }
