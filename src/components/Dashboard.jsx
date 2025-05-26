@@ -19,7 +19,7 @@ const Dashboard = () =>
          <div className="bg-bg text-text min-h-screen">
         <main className="pt-24 pb-12 px-4 flex justify-center">
         <div className="relative w-full max-w-sm">
-            <div className="bg-surface border border-border rounded-lg pt-20 pb-8 px-6 text-center mx-auto">
+            <div className="bg-surface border border-border rounded-lg pt-20 pb-8 px-6 text-center mx-auto top-6">
           <div
             className="absolute left-1/2 -translate-x-1/2 -top-12" >
             <img src={
@@ -50,8 +50,7 @@ const Dashboard = () =>
                 : <FaCamera className="text-white text-2xl" />
               }
             </div>
-    </div> 
-       <h2 className="text-2xl font-semibold">{user?.name}</h2>
+            <h2 className="text-2xl font-semibold">{user?.name}</h2>
             <p className="mt-1 text-text-alt">{user?.email}</p>
 
             <div className="mt-6 space-y-4">
@@ -67,7 +66,9 @@ const Dashboard = () =>
                 <span className="block text-text-alt">Games Won</span>
                 <span className="block text-xl font-bold">{user?.gamesWon}</span>
               </div>
-            </div></div>
+            </div>
+    </div> 
+       </div>
         </main>
         </div>
     )
