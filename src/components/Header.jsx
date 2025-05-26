@@ -29,19 +29,17 @@ const Header = () =>
              <Link to='/leaderboard' className='hover:text-text transition'>Leaderboard</Link>
                 {user ? (
                     <>
-                        <button className=' flex items-center space-x-1
+                        
+                        <div><Link to='/multiplayer' className='text-text-alt hover:text-text transition'>Play vs Player</Link></div>
+                  <button className=' flex items-center space-x-1
                   bg-primary text-surface
                   px-3 py-1 rounded-full
                   hover:bg-primary-variant
                   transition' onClick={logoutFn}>
                             <FaSignOutAlt /> Logout
                         </button>
-                    
-                   
                         <div><Link to='/dashboard' className='text-text-alt hover:text-text transition'>{user.name}</Link></div>
                     
-                        <div><Link to='/multiplayer' className='text-text-alt hover:text-text transition'>Play vs Player</Link></div>
-                  
                     </>
                 ) : (
                 <>
@@ -55,6 +53,7 @@ const Header = () =>
                     </Link>
                 </>
             )}
+            
             <ThemeToggle />
             </nav>
             </div>
