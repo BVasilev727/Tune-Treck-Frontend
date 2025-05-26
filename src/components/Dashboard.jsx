@@ -16,7 +16,7 @@ const Dashboard = () =>
     }
 
     return (
-         <div className="bg-bg text-text min-h-screen">
+         <div className="bg-bg text-text min-h-screen justify-center">
         <div className="container mx-auto px-4 pt-24 pb-12">
         <div className="max-w-md mx-auto relative">
           <div
