@@ -33,7 +33,7 @@ const GameComponent = () =>
     <div className="bg-bg text-text min-h-screen">
       <main className="pt-24 pb-12 px-4 flex flex-col items-center">
          <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-4">Guess the Song!</h2>
+          <h2 className="text-xl font-semibold mb-4 text-center">Guess the Song!</h2>
     <div className="flex items-center mb-4">
           <button onClick={togglePlayPause} className="text-primary mr-4 hover:text-primary-variant transition">
             {isPlaying ? "⏸️ Pause Preview" : "▶️ Play Preview"}
@@ -73,10 +73,8 @@ const GameComponent = () =>
                 absolute right-3 top-1/2 -translate-y-1/2
                 text-primary hover:text-primary-variant
                 transition">➤</button>
-          </div>
-
-          </div>
-          {suggestions.length > 0 && (
+                
+{suggestions.length > 0 && (
           <ul  className="
                             absolute left-0 right-0 mt-1
                             bg-surface border border-border
@@ -102,9 +100,10 @@ const GameComponent = () =>
                               </div>
                 </li>
               ))}    
-            </ul>
-          )}
+            </ul>)}
 
+          </div>
+          </div>
           {feedback !== null && (
           <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6 mt-6">
             {feedback ? (
