@@ -38,7 +38,6 @@ const GameComponent = () =>
           <button onClick={togglePlayPause} className="text-primary mr-4 hover:text-primary-variant transition">
             {isPlaying ? "⏸️ Pause Preview" : "▶️ Play Preview"}
           </button>
-    </div>
           <audio
             ref={audioRef}
             src={song.previewURL}
@@ -57,8 +56,8 @@ const GameComponent = () =>
               onChange={(e) => setVolume(parseFloat(e.target.value))}
             />
           </div>
-    
-          <div>
+    </div> 
+          <div className="relative flex">
             <input
               type="text"
               placeholder="Guess the song title..."
