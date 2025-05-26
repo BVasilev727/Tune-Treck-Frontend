@@ -31,8 +31,9 @@ function App()
   return (
     <>
     <Router>
-    <div className='w-full mt-8'>
+    <div className='w-full'>
       <Header />
+      <div className='mt-8'>
       <Routes>
         <Route path='/' element={<GameComponent />} />
         <Route path='/leaderboard' element={<Leaderboard />} />
@@ -42,6 +43,7 @@ function App()
           <Route path='/multiplayer' element={<Matchmaking />} />
           <Route path='/multiplayer/:roomId' element={<MultiplayerGame />} />  
       </Routes>
+      </div>
       </div>
     </Router>
     <ToastContainer />
