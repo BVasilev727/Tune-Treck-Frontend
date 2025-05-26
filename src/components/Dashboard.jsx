@@ -17,9 +17,9 @@ const Dashboard = () =>
 
     return (
          <div className="bg-bg text-text min-h-screen">
-        <main className="pt-24 pb-12 px-4 flex justify-center">
-        <div className="relative w-full max-w-sm">
-            <div className="bg-surface border border-border rounded-lg pt-20 pb-8 px-6 text-center mx-auto top-6">
+        <main className="pt- pb-12 px-4 flex justify-center">
+        <div className="relative w-full max-w-sm mt-8">
+            <div className="bg-surface border border-border rounded-lg pt-20 pb-8 px-6 text-center mx-auto top-6 justify-center">
           <div
             className="absolute left-1/2 -translate-x-1/2 -top-12" >
             <img src={
@@ -29,7 +29,9 @@ const Dashboard = () =>
                 w-24 h-24 rounded-full border-4 border-surface shadow-lg object-cover"/>
             </div>
 
-        
+         <h2 className="text-2xl font-semibold">{user?.name}</h2>
+            <p className="mt-1 text-text-alt">{user?.email}</p>
+
         <div className="mt-12 bg-surface border border-border rounded-lg pt-16 pb-8 px-6">
             <div className="text-center mb-6">
             <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} />
@@ -50,9 +52,7 @@ const Dashboard = () =>
                 : <FaCamera className="text-white text-2xl" />
               }
             </div>
-            <h2 className="text-2xl font-semibold">{user?.name}</h2>
-            <p className="mt-1 text-text-alt">{user?.email}</p>
-
+           
             <div className="mt-6 space-y-4">
               <div>
                 <span className="block text-text-alt">Elo Rating</span>
