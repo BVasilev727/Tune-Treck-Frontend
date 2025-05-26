@@ -31,7 +31,7 @@ function App()
   return (
     <>
     <Router>
-    <div className='w-full'>
+    <div className='w-full mt-8'>
       <Header />
       <Routes>
         <Route path='/' element={<GameComponent />} />
