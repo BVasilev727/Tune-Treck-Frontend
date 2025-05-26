@@ -31,7 +31,7 @@ function App()
   return (
     <>
     <Router>
-    <div className='container'>
+    <div className='w-full'>
       <Header />
       <Routes>
         <Route path='/' element={<GameComponent />} />
