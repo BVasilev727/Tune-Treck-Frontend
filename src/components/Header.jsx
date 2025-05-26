@@ -2,6 +2,7 @@ import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+import ThemeToggle from './ThemeToggle'
 
 const Header = () =>
 {
@@ -17,43 +18,46 @@ const Header = () =>
     }
 
     return(
-        <header className='header'>
-            <div className='logo'>
-                <Link to='/'>Main game</Link>
-            </div>
-            <ul>
-                <li>
-                    <div><Link to='/leaderboard'>Leaderboard</Link></div>
-                </li>
+        <header className='fixed top-4 left-0 w-full z-50 pointer-events-none'>
+            <div className='flex justify-center pointer-events-auto'>
+            <nav
+            className='flex items-center space-x-6
+            bg-surface/80 backdrop-blur-md
+            border border-border rounded-full
+            px-6 py-3'>
+                <Link to='/' className='text-x1 font-bold text-text'>TuneTreck</Link>
+             <Link to='/leaderboard' className='hover:text-text transition'>Leaderboard</Link>
                 {user ? (
                     <>
-                     <li>
-                        <button className='btn' onClick={logoutFn}>
+                        <button className=' flex items-center space-x-1
+                  bg-primary text-surface
+                  px-3 py-1 rounded-full
+                  hover:bg-primary-variant
+                  transition' onClick={logoutFn}>
                             <FaSignOutAlt /> Logout
                         </button>
-                    </li>
-                    <li>
-                        <div><Link to='/dashboard' >{user.name}</Link></div>
-                    </li>
-                    <li>
-                        <div><Link to='/multiplayer' >Play vs Player</Link></div>
-                    </li>
+                    
+                   
+                        <div><Link to='/dashboard' className='text-text-alt hover:text-text transition'>{user.name}</Link></div>
+                    
+                        <div><Link to='/multiplayer' className='text-text-alt hover:text-text transition'>Play vs Player</Link></div>
+                  
                     </>
                 ) : (
                 <>
-                <li>
-                    <Link to='/login'>
+                
+                    <Link to='/login'  className="flex items-center space-x-1 text-text-alt hover:text-text transition">
                         <FaSignInAlt />Login
                     </Link>
-                </li>
-                <li>
-                    <Link to='/register'>
+                
+                    <Link to='/register' className="flex items-center space-x-1 text-text-alt hover:text-text transition">
                         <FaUser />Register
                     </Link>
-                </li>
                 </>
             )}
-            </ul>
+            <ThemeToggle />
+            </nav>
+            </div>
         </header>
     )
 }

@@ -1,0 +1,23 @@
+@import './styles/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  /* use your semantic tokens for the whole page */
+  background-color: var(--color-bg);
+  color:            var(--color-text);
+  min-height:       100%;
+  margin:           0;
+  padding:          0;
+}
+
+/* links, inputs, buttons, etc., inherit the text color */
+a, button, input, textarea {
+  color: var(--color-text);
+}
+
+/* override Tailwind’s default preflight so body.tag gets the right bg */
+body {
+  @apply bg-bg text-text;
+}
