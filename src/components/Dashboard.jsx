@@ -16,9 +16,10 @@ const Dashboard = () =>
     }
 
     return (
-         <div className="bg-bg text-text min-h-screen justify-center">
-        <div className="container mx-auto px-4 pt-24 pb-12">
-        <div className="max-w-md mx-auto relative">
+         <div className="bg-bg text-text min-h-screen">
+        <main className="pt-24 pb-12 px-4 flex justify-center">
+        <div className="relative w-full max-w-sm">
+            <div className="bg-surface border border-border rounded-lg pt-20 pb-8 px-6 text-center mx-auto">
           <div
             className="absolute left-1/2 -translate-x-1/2 -top-12" >
             <img src={
@@ -50,29 +51,24 @@ const Dashboard = () =>
               }
             </div>
     </div> 
-     <div className="mt-12 bg-surface border border-border rounded-lg pt-16 pb-8 px-6">
-            <h2 className="text-center text-2xl font-semibold text-text">
-              {user?.name}
-            </h2>
-            <p className="mt-1 text-center text-text-alt">
-              {user?.email}
-            </p>
-            <div className="mt-6 flex justify-around">
-              <div className="text-center">
+       <h2 className="text-2xl font-semibold">{user?.name}</h2>
+            <p className="mt-1 text-text-alt">{user?.email}</p>
+
+            <div className="mt-6 space-y-4">
+              <div>
                 <span className="block text-text-alt">Elo Rating</span>
                 <span className="block text-xl font-bold">{user?.elo}</span>
               </div>
-              <div className="text-center">
+              <div>
                 <span className="block text-text-alt">Games Played</span>
                 <span className="block text-xl font-bold">{user?.gamesPlayed}</span>
               </div>
-              <div className="text-center">
+              <div>
                 <span className="block text-text-alt">Games Won</span>
                 <span className="block text-xl font-bold">{user?.gamesWon}</span>
               </div>
-            </div>
-        </div>
-        </div>
+            </div></div>
+        </main>
         </div>
     )
 }
