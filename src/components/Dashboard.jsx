@@ -17,7 +17,8 @@ const Dashboard = () =>
 
     return (
         <>   
-             <div className="pt-20 pb-12">
+        <div className="min-h-screen bg-bg text-text">
+    <div className="pt-20 pb-12">
         <div className="max-w-md mx-auto relative"></div>
           <div
             className="left-1/2 -translate-x-1/2 -top-12
@@ -52,9 +53,6 @@ const Dashboard = () =>
                 : <FaCamera className="text-white text-2xl" />
               }
             </div>
-        {user?.profilePicture && (
-            <img src={`${user?.profilePicture}?${Date.now()}`} alt="Profile" />
-        )}
     </div> 
      <div className="mt-12 bg-surface border border-border rounded-lg pt-16 pb-8 px-6">
             <h2 className="text-center text-2xl font-semibold text-text">
@@ -77,6 +75,7 @@ const Dashboard = () =>
                 <span className="block text-xl font-bold">{user?.gamesWon}</span>
               </div>
             </div>
+        </div>
         </div>
         </>
     )
