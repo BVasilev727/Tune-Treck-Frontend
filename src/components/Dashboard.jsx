@@ -16,7 +16,8 @@ const Dashboard = () =>
     }
 
     return (
-         <div className="bg-bg text-text min-h-screen">
+         <div className="bg-bg text-text min-h-screen"> 
+              <div className="w-full flex justify-center">
         <main className="pt- pb-12 px-4 flex justify-center">
         <div className="relative w-full max-w-sm mt-8">
             <div className="bg-surface border border-border rounded-lg pt-20 pb-8 px-6 text-center mx-auto top-6 justify-center">
@@ -70,6 +71,7 @@ const Dashboard = () =>
     </div> 
        </div>
         </main>
+        </div>
         </div>
     )
 }
