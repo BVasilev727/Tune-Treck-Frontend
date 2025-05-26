@@ -106,9 +106,9 @@ const GameComponent = () =>
             </ul>
           )}
 
-          {guessResult !== null && (
+          {feedback !== null && (
           <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6 mt-6">
-            {guessResult ? (
+            {feedback ? (
               <p className="text-center text-primary font-semibold">
                 ✅ Correct!
               </p>
