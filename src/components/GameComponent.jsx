@@ -76,9 +76,10 @@ const GameComponent = () =>
                 
 {suggestions.length > 0 && (
           <ul  className="
-                            absolute left-0 right-0 mt-1
-                            bg-surface border border-border
-                            rounded-b-lg overflow-auto z-10
+                            absolute left-0 top-full
++     w-full
++     bg-surface border border-border
++     rounded-b-lg overflow-auto z-10
                           "
                           style={{ maxHeight: '12rem' }}
                         >
@@ -104,9 +105,9 @@ const GameComponent = () =>
 
           </div>
           </div>
-          {feedback !== null && (
+          {feedback!== null && (
           <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6 mt-6">
-            {feedback ? (
+            {feedback=='correct' ? (
               <p className="text-center text-primary font-semibold">
                 ✅ Correct!
               </p>
