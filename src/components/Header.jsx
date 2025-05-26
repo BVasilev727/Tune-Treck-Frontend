@@ -18,8 +18,8 @@ const Header = () =>
     }
 
     return(
-        <header className='sticky top-0 z-50 bg-surface border-b border-border mb-8'>
-            <div className='flex justify-center pointer-events-auto'>
+        <header className='relative py-6'>
+            <div className='max-w-4xl mx-auto px-4'>
             <nav
             className='flex items-center space-x-6
             bg-surface/80 backdrop-blur-md
