@@ -16,20 +16,16 @@ const Dashboard = () =>
     }
 
     return (
-        <>   
-        <div className="min-h-screen bg-bg text-text">
-    <div className="pt-20 pb-12">
-        <div className="max-w-md mx-auto relative"></div>
+         <div className="bg-bg text-text min-h-screen">
+        <div className="container mx-auto px-4 pt-24 pb-12">
+        <div className="max-w-md mx-auto relative">
           <div
-            className="left-1/2 -translate-x-1/2 -top-12
-              group relative w-24 h-24" >
+            className="absolute left-1/2 -translate-x-1/2 -top-12" >
             <img src={
             user?.profilePicture ?
             `${user.profilePicture}?${Date.now()}` : '.frontend\public\base-profile-picture.png'
         } alt="Profile" className="
-                w-24 h-24 rounded-full border-4 border-surface
-                shadow-lg object-cover
-                group-hover:blur-sm transition"/>
+                w-24 h-24 rounded-full border-4 border-surface shadow-lg object-cover"/>
             </div>
 
         
@@ -77,7 +73,7 @@ const Dashboard = () =>
             </div>
         </div>
         </div>
-        </>
+        </div>
     )
 }
 export default Dashboard
