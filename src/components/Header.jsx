@@ -18,7 +18,7 @@ const Header = () =>
     }
 
     return(
-        <header className='fixed top-4 left-0 w-full z-50 pointer-events-none'>
+        <header className='sticky top-0 z-50 bg-surface border-b border-border mb-8'>
             <div className='flex justify-center pointer-events-auto'>
             <nav
             className='flex items-center space-x-6
