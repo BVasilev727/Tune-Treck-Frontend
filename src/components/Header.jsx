@@ -19,7 +19,7 @@ const Header = () =>
 
     return(
         <header className='relative py-6'>
-            <div className='max-w-4xl mx-auto px-4'>
+            <div className='flex justify-center px-4'>
             <nav
             className='flex items-center space-x-6
             bg-surface/80 backdrop-blur-md
