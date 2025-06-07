@@ -78,22 +78,23 @@ const {suggestions, setSuggestions} = useSuggestions(guess)
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg)] text-[var(--color-text)] p-4">
       <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-8 max-w-md w-full shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">Guess the Song!</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Guess the Song!
+        </h2>
 
+        {/* Play + Volume */}
         <div className="flex items-center justify-center mb-4 space-x-4">
-          <button onClick={togglePlayPause} className="text-primary mr-4 hover:text-primary-variant transition">
+          <button
+            onClick={togglePlayPause}
+            className="text-primary hover:text-primary-variant transition"
+          >
             {isPlaying ? "⏸️ Pause Preview" : "▶️ Play Preview"}
           </button>
-
           <div className="flex items-center space-x-2">
-            <span className="text-sm">
-              Volume: {Math.round(volume * 100)}%
-            </span>
+            <span className="text-sm">Volume: {Math.round(volume * 100)}%</span>
             <input
               type="range"
-              min="0"
-              max="1"
-              step="0.01"
+              min="0" max="1" step="0.01"
               value={volume}
               onChange={(e) => setVolume(parseFloat(e.target.value))}
               className="w-24"
@@ -101,13 +102,14 @@ const {suggestions, setSuggestions} = useSuggestions(guess)
           </div>
         </div>
         <audio
-            ref={audioRef}
-            src={song.previewURL}
-            preload="auto"
-            onEnded={() => setIsPlaying(false)}
-          />
+          ref={audioRef}
+          src={song.previewURL}
+          preload="auto"
+          onEnded={() => setIsPlaying(false)}
+        />
 
-        <div className="flex items-center bg-[var(--color-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2 mt-6">
+        {/* Guess input + suggestions */}
+        <div className="relative mt-6 flex items-center bg-[var(--color-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
           <input
             value={guess}
             onChange={(e) => setGuess(e.target.value)}
@@ -118,11 +120,12 @@ const {suggestions, setSuggestions} = useSuggestions(guess)
             onClick={() => makeGuess(guess)}
             disabled={guessResult === true}
             className={`ml-2 p-2 rounded-full transition ${
-              guessResult === true
+              guessResult
                 ? "bg-[var(--color-border)] cursor-not-allowed"
                 : "bg-[var(--color-primary)] hover:bg-[var(--color-primary-variant)]"
             }`}
           >
+            {/* ► icon */}
             <svg
               className="w-5 h-5 text-[var(--color-secondary)]"
               fill="currentColor"
@@ -131,42 +134,33 @@ const {suggestions, setSuggestions} = useSuggestions(guess)
               <path d="M10 18l6-6-6-6v12z" />
             </svg>
           </button>
-          {suggestions.length > 0 && (
-          <ul  className="
-                            absolute left-0 top-full
-     w-full
-     bg-surface border border-border
-     rounded-b-lg overflow-auto z-10
-                          "
-                          style={{ maxHeight: '12rem' }}
-                        >
-              {suggestions.map((song, i) => (
-                <li
-                  key={song.trackId}
-                  onClick={() => handleSuggestionClick(song.title)}
-                  className="
-                                flex items-center px-4 py-2
-                                hover:bg-surface/50 cursor-pointer
-                                transition
-                              "
-                  onMouseOver={(e) => e.currentTarget.style.background = '#f5f5f5'}
-                  onMouseOut={(e) => e.currentTarget.style.background = 'white'}
-                >
-                  <div>
-                                <div className="font-semibold text-text">{song.title}</div>
-                                <div className="text-text-alt text-sm">{song.artist}</div>
-                              </div>
-                </li>
-              ))}    
-            </ul>)}
 
+          {suggestions.length > 0 && (
+            <ul
+              className="absolute left-0 top-full w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-b-lg overflow-auto z-10"
+              style={{ maxHeight: "12rem" }}
+            >
+              {suggestions.map((s, i) => (
+                <li
+                  key={i}
+                  onClick={() => handleSuggestionClick(s)}
+                  className="px-4 py-2 hover:bg-[var(--color-surface)]/50 cursor-pointer transition"
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
+        {/* Wrong feedback */}
         {guessResult === false && (
           <p className="text-red-500 font-semibold mt-4 text-center">
             ❌ Wrong—try again!
           </p>
         )}
+
+        {/* … any other UI … */}
       </div>
     </div>
   );
