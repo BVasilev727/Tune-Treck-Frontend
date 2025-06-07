@@ -39,7 +39,7 @@ const Login = () =>
    return(
     isLoading ? <Spinner /> :(
     <>
-     <div className="min-h-screen flex items-center justify-center bg-bg p-4">
+     <div className="flex justify-center bg-bg p-4 pt-16">
      <div className="w-full max-w-md bg-surface shadow-xl rounded-2xl p-6">
         <h2 className="text-2xl font-bold mb-4 text-center text-text">Login to Your Account</h2>
             <div className="mb-4">
