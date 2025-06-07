@@ -2,6 +2,7 @@ import {  useSelector } from "react-redux"
 import React from "react"
 import { useGameLogic } from "../hooks/useGameLogic"
 import { useSuggestions } from "../hooks/useSuggestions";
+import Spinner from "./Spinner";
 
 const GameComponent = () =>
 {
@@ -22,15 +23,16 @@ const GameComponent = () =>
       setSuggestions([])
     }
 
-    if(isLoading) return <div>Loading...</div>
+    if(isLoading) return <div><Spinner/></div>
 
-    if(isError) return <div>Error: {message}</div>
+    if(isError) return <div className="">Error: {message}</div>
 
     if(!song) return <div>no song loaded</div>
     if(!song.previewURL) return <div>no song url loaded</div>
     
     return (
     <div className="bg-bg text-text min-h-screen">
+      
       <main className="pt-24 pb-12 px-4 flex flex-col items-center">
          <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4 text-center">Guess the Song!</h2>

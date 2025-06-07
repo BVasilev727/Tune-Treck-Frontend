@@ -20,7 +20,6 @@ const Login = () =>
 
    useEffect(
     () => {
-        if(isError) toast.error(message)
         if(isSuccess || user) navigate('/')
         dispatch(reset())
     },[user, isError, isSuccess, message, navigate, dispatch]
@@ -40,26 +39,53 @@ const Login = () =>
    return(
     isLoading ? <Spinner /> :(
     <>
-                <section className="heading">
-                    <h1><FaUser />Log in</h1>
-                    <p>Log in bruv</p>
-                </section>
-                
-                <section className="form">
-                    <form onSubmit={onSubmit}>
-                        <div className="form-group">
-                            <h2>Email</h2>
-                            <input type="email" className="form-control" id="email" name="email" value={email} placeholder="Enter your email here" onChange={onChange} />
-                        </div>
-                        <div className="form-group">
-                            <h2>Password</h2>
-                            <input type="password" className="form-control" id="password" name="password" value={password} placeholder="Enter your password here" onChange={onChange} />
-                        </div>
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-block">Submit</button>
-                        </div>
-                    </form>
-                </section>
+     <div className="min-h-screen flex items-center justify-center bg-bg p-4">
+     <div className="w-full max-w-md bg-surface shadow-xl rounded-2xl p-6">
+        <h2 className="text-2xl font-bold mb-4 text-center text-text">Login to Your Account</h2>
+            <div className="mb-4">
+          <label htmlFor="email" className="block text-sm font-medium text-text-alt">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            onChange={onchange}
+            value={email}
+            className="
+              mt-1 w-full px-4 py-2
+              bg-bg border border-border rounded-md
+              text-text placeholder:text-text-alt
+              focus:outline-none focus:ring-2 focus:ring-primary
+              transition"/>
+        </div>
+            <div className="mb-6">
+          <label htmlFor="password" className="block text-sm font-medium text-text-alt">
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            onchange={onChange}
+            value={password}
+            className="
+              mt-1 w-full px-4 py-2
+              bg-bg border border-border rounded-md
+              text-text placeholder:text-text-alt
+              focus:outline-none focus:ring-2 focus:ring-primary
+              transition"/>
+        </div>
+        <button type="submit" className="
+          w-full bg-primary text-surface
+          py-2 px-4 rounded-md
+          hover:bg-primary-variant
+          transition">
+          Login
+        </button>
+        </div>
+
+    </div>
             </>
     )
    )
