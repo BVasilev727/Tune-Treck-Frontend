@@ -47,8 +47,10 @@ const Register = () =>
 
 return (
         isLoading ? <Spinner /> : (
-             <div className="min-h-screen flex items-center justify-center bg-bg p-4">
+           <div className="flex justify-center bg-bg p-4 pt-16">
+            
       <div className="w-full max-w-md bg-surface shadow-xl rounded-2xl p-6">
+         <form onSubmit={onSubmit}>
         <h2 className="text-2xl font-bold mb-4 text-center text-text">
           Create a New Account
         </h2>
@@ -60,6 +62,7 @@ return (
           <input
             id="name"
             type="text"
+            name="name"
             value={name}
             onChange={onChange}
             className="
@@ -80,6 +83,7 @@ return (
             id="email"
             type="email"
             value={email}
+            name="email"
             onChange={onChange}
             placeholder="you@example.com"
             className="
@@ -100,6 +104,7 @@ return (
             id="password"
             value={password}
             onChange={onChange}
+            name="password"
             type="password"
             placeholder="••••••••"
             className="
@@ -139,6 +144,7 @@ return (
         type="submit">
           Register
         </button>
+        </form>
       </div>
     </div>
     )
