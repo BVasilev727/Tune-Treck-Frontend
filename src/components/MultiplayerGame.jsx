@@ -8,6 +8,7 @@ const MultiplayerGame = () => {
   const [guess, setGuess] = useState("");
   const [volume, setVolume] = useState(0.5);
   const audioRef = useRef(null);
+  const [isPlaying,setIsPlaying] = useState(false)
 
   useEffect(() => {
     if (song && audioRef.current) {
@@ -15,7 +16,18 @@ const MultiplayerGame = () => {
       audioRef.current.volume = volume;
     }
   }, [song, volume]);
-
+  const togglePlayPause = () =>
+    {
+        if(!audioRef.current) return
+        if(isPlaying)
+        {
+            audioRef.current.pause()
+        }
+        else{
+            audioRef.current.play()
+        }
+        setIsPlaying(!isPlaying)
+    }
   const handlePlayAgain = () => {
     navigate("/multiplayer");
   };
@@ -60,20 +72,9 @@ const MultiplayerGame = () => {
       <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-8 max-w-md w-full shadow-lg">
         <h2 className="text-2xl font-bold text-center mb-6">Guess the Song!</h2>
 
-        {/* Play Preview */}
         <div className="flex items-center justify-center mb-4 space-x-4">
-          <button
-            onClick={() => audioRef.current.play()}
-            className="flex items-center text-[var(--color-primary)] font-semibold hover:brightness-125"
-          >
-            <svg
-              className="w-5 h-5 mr-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M6 4l12 6-12 6V4z" />
-            </svg>
-            Play Preview
+          <button onClick={togglePlayPause} className="text-primary mr-4 hover:text-primary-variant transition">
+            {isPlaying ? "⏸️ Pause Preview" : "▶️ Play Preview"}
           </button>
 
           <div className="flex items-center space-x-2">
@@ -98,10 +99,13 @@ const MultiplayerGame = () => {
             />
           </div>
         </div>
+        <audio
+            ref={audioRef}
+            src={song.previewURL}
+            preload="auto"
+            onEnded={() => setIsPlaying(false)}
+          />
 
-        <audio ref={audioRef} src={song.previewURL} preload="auto" />
-
-        {/* Guess input */}
         <div className="flex items-center bg-[var(--color-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2 mt-6">
           <input
             value={guess}
