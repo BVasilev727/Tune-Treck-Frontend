@@ -107,19 +107,21 @@ const GameComponent = () =>
 
           </div>
           </div>
-          {feedback!== null && (
-          <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6 mt-6">
-            {feedback=='correct' ? (
-              <p className="text-center text-primary font-semibold">
-                ✅ Correct!
-              </p>
-            ) : (
-              <p className="text-center text-danger font-semibold">
-                ❌ Wrong—try again!
-              </p>
-            )}
-          </div>
-        )}
+          {feedback === 'correct' && (
+    <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6 mt-6">
+      <p className="text-center text-primary font-semibold">
+        ✅ Correct!
+      </p>
+    </div>
+  )}
+
+  {feedback === 'wrong' && (
+    <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6 mt-6">
+      <p className="text-center text-danger font-semibold">
+        ❌ Wrong—try again!
+      </p>
+    </div>
+  )}
       </main>    
     </div>
       )
