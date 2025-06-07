@@ -115,7 +115,7 @@ const GameComponent = () =>
     </div>
   )}
 
-  {feedback === 'wrong' && (
+  {feedback === 'try again' && (
     <div className="w-full max-w-md bg-surface border border-border rounded-lg p-6 mt-6">
       <p className="text-center text-danger font-semibold">
         ❌ Wrong—try again!
