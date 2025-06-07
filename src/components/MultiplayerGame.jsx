@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useMultiplayerGameLogic } from "../hooks/useMultiplayerGameLogic";
 import { useNavigate } from "react-router-dom";
 import { useSuggestions } from "../hooks/useSuggestions";
+import Spinner from "./Spinner";
 
 const MultiplayerGame = () => {
   const { opponent, song, guessResult, gameOverData, makeGuess } =
@@ -14,6 +15,7 @@ const MultiplayerGame = () => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // suggestions hook, same as solo game
   const { suggestions, setSuggestions } = useSuggestions(guess);
 
   useEffect(() => {
@@ -30,9 +32,9 @@ const MultiplayerGame = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const handleSuggestionClick = (suggestion) => {
-    setGuess(suggestion);
-    makeGuess(suggestion);
+  const handleSuggestionClick = (s) => {
+    setGuess(s.title);
+    makeGuess(s.title);
     setSuggestions([]);
   };
 
@@ -64,25 +66,21 @@ const MultiplayerGame = () => {
     );
   }
 
-  // Loading screen
+  // Loading / no song
   if (!song) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg)] text-[var(--color-text)] p-4">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-2">
-            Matched vs A Worthy Opponent
-          </h2>
-          <p className="text-lg text-[var(--color-text-alt)]">Loading round…</p>
-        </div>
+        <Spinner />
       </div>
     );
   }
 
-  // Main game UI
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg)] text-[var(--color-text)] p-4">
       <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-8 max-w-md w-full shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">Guess the Song!</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Guess the Song!
+        </h2>
 
         {/* Play / Volume controls */}
         <div className="flex items-center justify-center mb-4 space-x-4">
@@ -113,11 +111,13 @@ const MultiplayerGame = () => {
           src={song.previewURL}
           preload="auto"
           onEnded={() => setIsPlaying(false)}
+          className="w-full"
         />
 
         {/* Guess input + suggestions */}
         <div className="relative mt-6 flex items-center bg-[var(--color-secondary)] border border-[var(--color-border)] rounded-full px-4 py-2">
           <input
+            type="text"
             value={guess}
             onChange={(e) => {
               setGuess(e.target.value);
@@ -130,7 +130,7 @@ const MultiplayerGame = () => {
             onClick={() => makeGuess(guess)}
             disabled={guessResult === true}
             className={`ml-2 p-2 rounded-full transition ${
-              guessResult === true
+              guessResult
                 ? "bg-[var(--color-border)] cursor-not-allowed"
                 : "bg-[var(--color-primary)] hover:bg-[var(--color-primary-variant)]"
             }`}
@@ -149,13 +149,18 @@ const MultiplayerGame = () => {
               className="absolute left-0 top-full w-full bg-[var(--color-surface)] border border-[var(--color-border)] rounded-b-lg overflow-auto z-10"
               style={{ maxHeight: "12rem" }}
             >
-              {suggestions.map((s, i) => (
+              {suggestions.map((s) => (
                 <li
-                  key={i}
+                  key={s.trackId}
                   onClick={() => handleSuggestionClick(s)}
-                  className="px-4 py-2 hover:bg-[var(--color-surface)]/50 cursor-pointer transition"
+                  className="flex flex-col px-4 py-2 hover:bg-[var(--color-surface)]/50 cursor-pointer transition"
                 >
-                  {s}
+                  <span className="font-semibold text-[var(--color-text)]">
+                    {s.title}
+                  </span>
+                  <span className="text-xs text-[var(--color-text-alt)]">
+                    {s.artistName}
+                  </span>
                 </li>
               ))}
             </ul>
