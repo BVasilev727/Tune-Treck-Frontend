@@ -33,7 +33,7 @@ const MultiplayerGame = () => {
     const handleSuggestionClick = (suggestion) =>
     {
       setGuess(suggestion)
-      handleGuess(suggestion)
+      makeGuess(suggestion)
       setSuggestions([])
     }
   const handlePlayAgain = () => {
