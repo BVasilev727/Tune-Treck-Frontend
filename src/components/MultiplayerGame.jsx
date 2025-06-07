@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useMultiplayerGameLogic } from "../hooks/useMultiplayerGameLogic";
 import { useNavigate } from "react-router-dom";
+import { useSuggestions } from "../hooks/useSuggestions";
 
 const MultiplayerGame = () => {
   const { opponent, song, guessResult, gameOverData, makeGuess } = useMultiplayerGameLogic();
+  const {suggestions, setSuggestions} = useSuggestions(guess)
   const navigate = useNavigate();
   const [guess, setGuess] = useState("");
   const [volume, setVolume] = useState(0.5);
@@ -27,6 +29,12 @@ const MultiplayerGame = () => {
             audioRef.current.play()
         }
         setIsPlaying(!isPlaying)
+    }
+    const handleSuggestionClick = (suggestion) =>
+    {
+      setGuess(suggestion)
+      handleGuess(suggestion)
+      setSuggestions([])
     }
   const handlePlayAgain = () => {
     navigate("/multiplayer");
@@ -59,7 +67,7 @@ const MultiplayerGame = () => {
       <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg)] text-[var(--color-text)] p-4">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-2">
-            Matched vs {opponent?.name}
+            Matched vs A Worthy Opponent
           </h2>
           <p className="text-lg text-[var(--color-text-alt)]">Loading round…</p>
         </div>
@@ -78,13 +86,6 @@ const MultiplayerGame = () => {
           </button>
 
           <div className="flex items-center space-x-2">
-            <svg
-              className="w-5 h-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M9 4a1 1 0 00-1 1v10a1 1 0 001 1h1V4H9zM13 4a1 1 0 011 1v10a1 1 0 01-1 1h-1V4h1z" />
-            </svg>
             <span className="text-sm">
               Volume: {Math.round(volume * 100)}%
             </span>
@@ -130,6 +131,35 @@ const MultiplayerGame = () => {
               <path d="M10 18l6-6-6-6v12z" />
             </svg>
           </button>
+          {suggestions.length > 0 && (
+          <ul  className="
+                            absolute left-0 top-full
+     w-full
+     bg-surface border border-border
+     rounded-b-lg overflow-auto z-10
+                          "
+                          style={{ maxHeight: '12rem' }}
+                        >
+              {suggestions.map((song, i) => (
+                <li
+                  key={song.trackId}
+                  onClick={() => handleSuggestionClick(song.title)}
+                  className="
+                                flex items-center px-4 py-2
+                                hover:bg-surface/50 cursor-pointer
+                                transition
+                              "
+                  onMouseOver={(e) => e.currentTarget.style.background = '#f5f5f5'}
+                  onMouseOut={(e) => e.currentTarget.style.background = 'white'}
+                >
+                  <div>
+                                <div className="font-semibold text-text">{song.title}</div>
+                                <div className="text-text-alt text-sm">{song.artist}</div>
+                              </div>
+                </li>
+              ))}    
+            </ul>)}
+
         </div>
 
         {guessResult === false && (
