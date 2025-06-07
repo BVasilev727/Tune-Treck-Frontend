@@ -71,7 +71,7 @@ const Login = () =>
             id="password"
             type="password"
             placeholder="••••••••"
-            onchange={onChange}
+            onChange={onChange}
             value={password}
             name="password"
             className="

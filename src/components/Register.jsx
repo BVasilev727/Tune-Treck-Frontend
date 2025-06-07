@@ -125,6 +125,7 @@ return (
             value={password2}
             onChange={onChange}
             type="password"
+            name="password2"
             placeholder="••••••••"
             className="
               mt-1 w-full px-4 py-2
