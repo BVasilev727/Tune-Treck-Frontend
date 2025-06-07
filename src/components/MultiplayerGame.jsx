@@ -5,13 +5,13 @@ import { useSuggestions } from "../hooks/useSuggestions";
 
 const MultiplayerGame = () => {
   const { opponent, song, guessResult, gameOverData, makeGuess } = useMultiplayerGameLogic();
-  const {suggestions, setSuggestions} = useSuggestions(guess)
+  
   const navigate = useNavigate();
   const [guess, setGuess] = useState("");
   const [volume, setVolume] = useState(0.5);
   const audioRef = useRef(null);
   const [isPlaying,setIsPlaying] = useState(false)
-
+const {suggestions, setSuggestions} = useSuggestions(guess)
   useEffect(() => {
     if (song && audioRef.current) {
       audioRef.current.load();
