@@ -46,7 +46,6 @@ const Register = () => {
       length: pw.length >= 8,
       uppercase: /[A-Z]/.test(pw),
       number: /[0-9]/.test(pw),
-      special: /[!@#$%^&*(),.?":{}|<>]/.test(pw),
     })
   }
 
@@ -192,7 +191,6 @@ const Register = () => {
                     : "text-[var(--color-text-alt)]"
                 }
               >
-                {requirements.special ? "✓" : "•"} One special character
               </li>
             </ul>
           </div>
