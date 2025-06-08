@@ -12,6 +12,7 @@ import { getCurrentUser } from './features/auth/authSlice'
 import MultiplayerGame from './components/MultiplayerGame'
 import Matchmaking from './components/Matchmaking'
 import Leaderboard from './components/Leaderboard'
+import Spinner from './components/Spinner'
 
 
 function App()
@@ -26,7 +27,7 @@ function App()
   const {checkedAuth} = useSelector(state => state.auth)
   if(!checkedAuth)
   {
-    return <div>Loading...</div>
+    return <div><Spinner/></div>
   }
   return (
     <>
